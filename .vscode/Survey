@@ -15,6 +15,9 @@
 #   yardSpot: the number correlated to the spot in the yard
 #   yardMove: if the person wants to move the trailer
 #   loadChange: if a person wants to change the load status of a trailer
+#   ops: the operation the person wants to run in the program
+
+
 
 loadStatus1 = "Loaded"
 loadStatus2 = "Empty"
@@ -22,50 +25,56 @@ loadStatus3 = "Unloading"
 loadStatus4 = "Loading"
 yardMove1 = "Y"
 yardMove2 = "N"
+ops1 = "Check"
+ops2 = "Move"
+ops3 = "Change"
+ops4 = "Quit"
+
 
 # Beginning the checkin process by getting all of the information from the driver
 def check():
     
-    trailerNumber = int(input("Enter the trailer number here: "))
+    trailerNumber = input("Enter the trailer number here: ")
     carrierName = input("Enter the carrier's name here: ")
     driverName = input("Enter the driver's name here: ")
     truckPlate = input("Enter the truck plate here: ")
     trailerPlate = input("Enter the trailer plate here: ")
     loadStatus = input("Enter the load status here: ")
-    yardSpot = int(input("Enter the yard spot the driver is putting his trailer in: "))
+    yardSpot = input("Enter the yard spot the driver is putting his trailer in: ")
     while loadStatus != loadStatus1 or loadStatus2:
         if loadStatus == loadStatus1:
             sealNumber = float(input("Enter the seal number here: "))
             print("Trailer has been checked in successfully.")
-            return
+            break
         elif loadStatus == loadStatus2:
             print("Trailer has been checked in successfully.")
-            return
+            break
         else:
             loadStatus = input("ERROR.....Enter the load status here: ")
-            break
+
     
-
-def move():
-
+def move(trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loadStatus, yardSpot):
+    
+    print(trailerNumber, " is in spot ", yardSpot)
     yardMove = input("Would you like to move the trailer from the current spot it's in? Y for yes and N for no: ")
     while yardMove != yardMove1 or yardMove2:
         if yardMove == "Y":
             yardSpot = input("Enter the spot where you would like to move the trailer to: ")
-            print("Trailer has been moved to", yardSpot)
-            return
+            print(trailerNumber, "has been moved to", yardSpot)
+            break
         elif yardMove == "N":
             print("Trailer will remain in that spot.")
-            return
+            break
         else:
             yardMove = input("ERROR.....Would you like to move the trailer from the current spot it's in? Y for yes and N for no: ")
             
-def change():
+    
+def change(trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loadStatus, yardSpot):
 
-    loadChange = input("Would you like to change the load status of the trailer, Type Y for yes and N for No: ")
+    print(trailerNumber, "is", loadStatus)
+    loadChange = input("Would you like to change the load status of trailer, Type Y for yes and N for No: ")
     while loadChange == "Y" or "N":
         if loadChange == "Y":
-            loadStatus = input("What is the status of the trailer: ")
             while loadStatus == loadStatus1 or loadStatus2 or loadStatus3 or loadStatus4:
                 loadStatus = input("Enter what you want to change the load status to: ")
                 if loadStatus == "Loaded":
@@ -88,6 +97,29 @@ def change():
             loadChange = input("ERROR.....Would you like to change the load status of the trailer, Type Y for yes and N for No: ")
         
 
-check()  
-move()
-change()
+
+
+
+def main():
+
+
+    ops = input("If you want to check in a trailer  type 'check', to move a trailer type 'move', to change the load status type 'change', or 'quit' to end the program: ")
+    while ops != ops1 or ops2 or ops3:   
+        if ops == ops1:
+            check()
+            ops = input("If you want to check in a trailer  type 'check', to move a trailer type 'move', to change the load status type 'change', or 'quit' to end the program: ")
+        elif ops == ops2:
+            move (trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loadStatus, yardSpot)
+            ops = input("If you want to check in a trailer  type 'check', to move a trailer type 'move', to change the load status type 'change', or 'quit' to end the program: ")
+        elif ops == ops3:
+            change(trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loadStatus, yardSpot)
+            ops = input("If you want to check in a trailer  type 'check', to move a trailer type 'move', to change the load status type 'change', or 'quit' to end the program: ")
+        elif ops == ops4:
+            print("You have ended the program.")
+            break    
+        else:
+            ops = input("ERROR......If you want to check in a trailer  type 'check', to move a trailer type 'move', to change the load status type 'change', or 'quit' to end the program: ")
+
+main()
+
+
