@@ -25,10 +25,10 @@ loadStatus3 = "Unloading"
 loadStatus4 = "Loading"
 yardMove1 = "Y"
 yardMove2 = "N"
-ops1 = "Check"
-ops2 = "Move"
-ops3 = "Change"
-ops4 = "Quit"
+ops1 = "check"
+ops2 = "move"
+ops3 = "change"
+ops4 = "quit"
 
 
 # Beginning the checkin process by getting all of the information from the driver
@@ -51,7 +51,7 @@ def check():
             break
         else:
             loadStatus = input("ERROR.....Enter the load status here: ")
-
+    main()
     
 def move(trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loadStatus, yardSpot):
     
@@ -67,7 +67,7 @@ def move(trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loadS
             break
         else:
             yardMove = input("ERROR.....Would you like to move the trailer from the current spot it's in? Y for yes and N for no: ")
-            
+    main()        
     
 def change(trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loadStatus, yardSpot):
 
@@ -96,7 +96,7 @@ def change(trailerNumber, carrierName, driverName, truckPlate, trailerPlate, loa
         else:
             loadChange = input("ERROR.....Would you like to change the load status of the trailer, Type Y for yes and N for No: ")
         
-
+    main()
 
 
 
